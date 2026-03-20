@@ -1,0 +1,2172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ClearHead — Stop pretending everything matters.</title>
+<link href="https://fonts.googleapis.com/css2?family=Fragment+Mono:ital@0;1&family=Familjen+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #f8f6f1;
+  --ink: #111010;
+  --muted: #7a7570;
+  --faint: #ccc8bf;
+  --card: #ffffff;
+  --border: #e4e0d8;
+  --red: #e8321a;
+  --amber: #f0a500;
+  --green: #1a9e5c;
+  --drop-bg: #f0ede8;
+  --drop-text: #aaa49c;
+}
+
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Familjen Grotesk',sans-serif;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+.page{display:none;min-height:100vh;}
+.page.active{display:block;}
+
+/* ══════════════════════════════
+   LANDING
+══════════════════════════════ */
+#page-landing{ background:var(--bg); }
+
+/* ── HERO ── */
+.hero {
+  background: #111010;
+  color: #f8f6f1;
+  padding: 52px 26px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle diagonal rule */
+.hero::before {
+  content:'';
+  position:absolute;
+  top:-60px; right:-40px;
+  width:220px; height:220px;
+  border:1px solid rgba(255,255,255,0.04);
+  border-radius:50%;
+  pointer-events:none;
+}
+.hero::after {
+  content:'';
+  position:absolute;
+  top:10px; right:20px;
+  width:100px; height:100px;
+  border:1px solid rgba(255,255,255,0.04);
+  border-radius:50%;
+  pointer-events:none;
+}
+
+.hero-eyebrow {
+  font-family:'Fragment Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:#555;
+  margin-bottom:22px;
+  animation: fadeUp 0.5s ease both;
+}
+
+.hero-identity {
+  font-size:13px;
+  color:#555;
+  font-family:'Fragment Mono',monospace;
+  letter-spacing:0.06em;
+  margin-bottom:24px;
+  animation: fadeUp 0.5s 0.18s ease both;
+}
+
+.hero-h1 {
+  font-size: clamp(36px, 9.5vw, 56px);
+  font-weight:700;
+  line-height:1.04;
+  letter-spacing:-0.03em;
+  margin-bottom:20px;
+  animation: fadeUp 0.5s 0.08s ease both;
+}
+
+.hero-h1 em {
+  font-style:normal;
+  color:var(--red);
+}
+
+.hero-sub {
+  font-size:17px;
+  color:#a09a92;
+  line-height:1.65;
+  max-width:360px;
+  margin-bottom:10px;
+  font-weight:400;
+  animation: fadeUp 0.5s 0.15s ease both;
+}
+
+.hero-sub strong {
+  color:#d8d4cc;
+  font-weight:600;
+}
+
+.hero-cta-wrap {
+  margin-top:32px;
+  animation: fadeUp 0.5s 0.22s ease both;
+}
+
+.hero-cta {
+  display:block;
+  width:100%;
+  background:var(--red);
+  color:#fff;
+  padding:19px 28px;
+  border-radius:8px;
+  font-size:16px;
+  font-weight:700;
+  letter-spacing:0.01em;
+  border:none;
+  cursor:pointer;
+  text-align:center;
+  transition:filter 0.15s, transform 0.12s;
+}
+.hero-cta:hover{filter:brightness(1.12);}
+.hero-cta:active{transform:scale(0.99);}
+
+.hero-cta-note {
+  font-size:11px;
+  color:#444;
+  text-align:center;
+  margin-top:10px;
+  font-family:'Fragment Mono',monospace;
+  letter-spacing:0.05em;
+}
+
+@keyframes fadeUp {
+  from{opacity:0;transform:translateY(14px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* ── VISUAL DEMO ── */
+.demo-section {
+  padding: 48px 22px;
+  background: var(--bg);
+}
+
+.demo-label {
+  font-family:'Fragment Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:22px;
+  text-align:center;
+}
+
+.demo-flow {
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  align-items:center;
+}
+
+.demo-before {
+  width:100%;
+  background:#1a1816;
+  border-radius:12px;
+  padding:20px 18px;
+}
+
+.demo-before-label {
+  font-family:'Fragment Mono',monospace;
+  font-size:9px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:#444;
+  margin-bottom:12px;
+}
+
+.demo-dump-text {
+  font-size:14px;
+  color:#6b6760;
+  line-height:1.7;
+  font-style:italic;
+}
+
+.demo-arrow {
+  font-size:22px;
+  color:var(--red);
+  animation: bounce 1.8s ease infinite;
+}
+
+@keyframes bounce {
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(5px);}
+}
+
+.demo-after {
+  width:100%;
+  background:var(--card);
+  border:1.5px solid var(--border);
+  border-radius:12px;
+  overflow:hidden;
+}
+
+.demo-after-row {
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  padding:14px 16px;
+  border-bottom:1px solid var(--border);
+}
+.demo-after-row:last-child{border-bottom:none;}
+
+.demo-badge {
+  font-family:'Fragment Mono',monospace;
+  font-size:9px;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  padding:3px 8px;
+  border-radius:4px;
+  white-space:nowrap;
+  flex-shrink:0;
+  margin-top:2px;
+}
+.db-now{background:#ffe8e5;color:var(--red);}
+.db-later{background:#e6f4ee;color:var(--green);}
+.db-drop{background:#f0ede8;color:#aaa49c;}
+
+.demo-task-text {
+  font-size:14px;
+  font-weight:600;
+  color:var(--ink);
+  flex:1;
+  line-height:1.4;
+}
+.demo-task-text.faded {
+  color:#bbb8b0;
+  text-decoration:line-through;
+  font-weight:400;
+}
+
+.demo-drop-reason {
+  font-size:11px;
+  color:#c0bbb3;
+  font-style:italic;
+  flex:1;
+  line-height:1.4;
+}
+
+/* ── LET GO SECTION ── */
+.letgo-section {
+  background:#111010;
+  color:#f8f6f1;
+  padding:48px 24px;
+}
+
+.letgo-eyebrow {
+  font-family:'Fragment Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:#555;
+  margin-bottom:16px;
+}
+
+.letgo-h2 {
+  font-size:28px;
+  font-weight:700;
+  letter-spacing:-0.02em;
+  line-height:1.15;
+  margin-bottom:12px;
+}
+
+.letgo-sub {
+  font-size:15px;
+  color:#7a7570;
+  line-height:1.6;
+  margin-bottom:30px;
+  max-width:340px;
+}
+
+.letgo-sub strong {
+  color:#a09a92;
+}
+
+.letgo-cards {
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  margin-bottom:28px;
+}
+
+.letgo-card {
+  background:#1a1816;
+  border:1px solid #252220;
+  border-radius:10px;
+  padding:16px 18px;
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+}
+
+.letgo-x {
+  font-size:14px;
+  flex-shrink:0;
+  margin-top:1px;
+}
+
+.letgo-body {}
+
+.letgo-task {
+  font-size:14px;
+  font-weight:600;
+  color:#4a4540;
+  text-decoration:line-through;
+  margin-bottom:4px;
+  opacity:0.6;
+  filter:blur(0.3px);
+}
+
+.letgo-reason {
+  font-size:12px;
+  color:#444;
+  font-family:'Fragment Mono',monospace;
+  letter-spacing:0.02em;
+}
+
+.letgo-philosophy {
+  background:#161412;
+  border:1px solid #252220;
+  border-left:3px solid var(--red);
+  border-radius:0 10px 10px 0;
+  padding:18px 18px;
+  font-size:14px;
+  color:#a09a92;
+  line-height:1.65;
+}
+
+.letgo-philosophy strong {
+  color:#f8f6f1;
+}
+
+/* ── DIFF STRIP ── */
+.diff-strip {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1px;
+  background:#222;
+  border-top:1px solid #222;
+}
+
+.diff-cell {
+  background:#111010;
+  padding:22px 20px;
+}
+
+.diff-cell-label {
+  font-family:'Fragment Mono',monospace;
+  font-size:9px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:#444;
+  margin-bottom:8px;
+}
+
+.diff-cell-text {
+  font-size:14px;
+  font-weight:600;
+  color:#f8f6f1;
+  line-height:1.4;
+}
+
+.diff-cell-text.struck {
+  color:#444;
+  text-decoration:line-through;
+  font-weight:400;
+}
+
+/* ── SOCIAL ── */
+.social-section {
+  padding:40px 22px 48px;
+  background:var(--bg);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.social-head {
+  font-family:'Fragment Mono',monospace;
+  font-size:10px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+
+.q-card {
+  background:var(--card);
+  border:1.5px solid var(--border);
+  border-radius:10px;
+  padding:16px 18px;
+}
+
+.q-text {
+  font-size:14px;
+  color:var(--ink);
+  line-height:1.6;
+  font-style:italic;
+}
+
+.q-attr {
+  font-size:11px;
+  color:var(--muted);
+  margin-top:8px;
+  font-family:'Fragment Mono',monospace;
+}
+
+/* ── FINAL CTA ── */
+.final-cta-section {
+  background:#111010;
+  padding:48px 24px 56px;
+  text-align:center;
+}
+
+.final-cta-h {
+  font-size:26px;
+  font-weight:700;
+  letter-spacing:-0.02em;
+  color:#f8f6f1;
+  margin-bottom:10px;
+  line-height:1.2;
+}
+
+.final-cta-sub {
+  font-size:14px;
+  color:#666;
+  margin-bottom:28px;
+  line-height:1.6;
+}
+
+.final-cta-btn {
+  display:block;
+  width:100%;
+  max-width:320px;
+  margin:0 auto;
+  background:var(--red);
+  color:#fff;
+  padding:19px 28px;
+  border-radius:8px;
+  font-size:15px;
+  font-weight:700;
+  border:none;
+  cursor:pointer;
+  transition:filter 0.15s;
+}
+.final-cta-btn:hover{filter:brightness(1.12);}
+
+.final-note {
+  font-size:11px;
+  color:#3a3836;
+  margin-top:12px;
+  font-family:'Fragment Mono',monospace;
+  letter-spacing:0.05em;
+}
+
+
+/* ══════════════════════════════
+   SCREEN 1 — DUMP
+══════════════════════════════ */
+#page-dump {
+  background:var(--bg);
+  display:none;
+  flex-direction:column;
+  min-height:100vh;
+}
+#page-dump.active{display:flex;}
+
+.dump-top {
+  flex:1;
+  padding:36px 24px 0;
+  display:flex;
+  flex-direction:column;
+}
+
+.wordmark {
+  font-family:'Fragment Mono',monospace;
+  font-size:11px;
+  letter-spacing:0.14em;
+  color:var(--faint);
+  text-transform:uppercase;
+  margin-bottom:30px;
+}
+
+.dump-h {
+  font-size:24px;
+  font-weight:700;
+  letter-spacing:-0.02em;
+  line-height:1.2;
+  margin-bottom:6px;
+}
+
+.dump-hint {
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:20px;
+  line-height:1.5;
+}
+
+.dump-ta {
+  flex:1;
+  width:100%;
+  background:var(--card);
+  border:1.5px solid var(--border);
+  border-radius:12px;
+  padding:18px;
+  font-family:'Familjen Grotesk',sans-serif;
+  font-size:16px;
+  font-weight:400;
+  color:var(--ink);
+  line-height:1.7;
+  resize:none;
+  outline:none;
+  min-height:200px;
+  transition:border-color 0.2s;
+}
+.dump-ta:focus{border-color:var(--ink);}
+.dump-ta::placeholder{color:var(--faint);}
+
+.energy-label {
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin:20px 0 10px;
+  font-family:'Fragment Mono',monospace;
+}
+
+.energy-row {
+  display:flex;
+  gap:8px;
+  margin-bottom:20px;
+}
+
+.energy-btn {
+  flex:1;
+  background:var(--card);
+  border:1.5px solid var(--border);
+  border-radius:8px;
+  padding:12px 8px;
+  text-align:center;
+  cursor:pointer;
+  transition:all 0.15s;
+}
+.energy-btn .e-icon{font-size:14px;}
+.energy-btn .e-lbl{font-size:11px;font-weight:600;color:var(--muted);display:block;margin-top:4px;}
+.energy-btn.selected{background:var(--ink);border-color:var(--ink);}
+.energy-btn.selected .e-lbl{color:#f8f6f1;}
+
+.dump-footer {
+  padding:0 24px 36px;
+}
+
+.btn-main {
+  width:100%;
+  background:var(--ink);
+  color:var(--bg);
+  border:none;
+  border-radius:10px;
+  padding:18px;
+  font-family:'Familjen Grotesk',sans-serif;
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:0.02em;
+  cursor:pointer;
+  transition:opacity 0.15s;
+}
+.btn-main:hover{opacity:0.88;}
+.btn-main:disabled{opacity:0.35;cursor:not-allowed;}
+
+
+/* ══════════════════════════════
+   SCREEN 2 — OUTPUT
+══════════════════════════════ */
+#page-output {
+  background:var(--bg);
+  display:none;
+  overflow-y:auto;
+}
+#page-output.active{display:block;}
+
+.output-inner {
+  padding:32px 22px 100px;
+  max-width:520px;
+  margin:0 auto;
+}
+
+.out-wm {
+  font-family:'Fragment Mono',monospace;
+  font-size:11px;
+  letter-spacing:0.12em;
+  color:var(--faint);
+  text-transform:uppercase;
+  margin-bottom:28px;
+}
+
+.sec-head {
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-bottom:12px;
+  margin-top:28px;
+}
+
+.sec-badge {
+  font-family:'Fragment Mono',monospace;
+  font-size:9px;
+  font-weight:400;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  padding:4px 10px;
+  border-radius:4px;
+}
+.bn{background:#ffe8e5;color:var(--red);}
+.bt{background:#fff6e0;color:#c07800;}
+.bl{background:#e6f4ee;color:var(--green);}
+.bd{background:#f0ede8;color:#aaa49c;}
+
+.sec-ct {
+  font-size:11px;
+  color:var(--faint);
+  font-family:'Fragment Mono',monospace;
+}
+
+.task-card {
+  background:var(--card);
+  border:1.5px solid var(--border);
+  border-radius:10px;
+  padding:16px 18px;
+  margin-bottom:8px;
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+  transition:border-color 0.15s,opacity 0.2s;
+}
+.task-card.clickable{cursor:pointer;}
+.task-card.clickable:hover{border-color:#bbb8b0;}
+.task-card.done{opacity:0.38;}
+.task-card.done .task-title{text-decoration:line-through;}
+.task-card.nc{border-left:3px solid var(--red);}
+.task-card.tc{border-left:3px solid var(--amber);}
+.task-card.lc{border-left:3px solid var(--green);}
+.task-card.dc{background:var(--drop-bg);border-color:#dedad4;}
+.task-card.dc .task-title{color:var(--drop-text);}
+
+.t-chk {
+  width:22px;height:22px;
+  border-radius:50%;
+  border:1.5px solid var(--faint);
+  flex-shrink:0;
+  margin-top:1px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;
+  color:transparent;
+  transition:all 0.15s;
+}
+.task-card.done .t-chk{background:var(--green);border-color:var(--green);color:#fff;}
+
+.task-body{flex:1;}
+.task-title{font-size:15px;font-weight:600;color:var(--ink);line-height:1.35;}
+.task-time{display:inline-block;font-family:'Fragment Mono',monospace;font-size:10px;color:var(--muted);margin-top:5px;letter-spacing:0.04em;}
+.task-reason{font-size:12px;color:var(--muted);margin-top:5px;line-height:1.5;font-weight:400;}
+
+.drop-reason-row{display:flex;align-items:flex-start;gap:6px;margin-top:6px;}
+.drop-x{font-size:11px;color:#c0bbb3;flex-shrink:0;margin-top:1px;}
+.drop-rt{font-size:12px;color:#c0bbb3;line-height:1.4;font-style:italic;}
+
+.insight-block {
+  margin-top:32px;
+  background:var(--ink);
+  border-radius:14px;
+  padding:22px 22px 20px;
+  color:#f8f6f1;
+}
+.insight-ey{font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#555;margin-bottom:10px;}
+.insight-txt{font-size:16px;font-weight:500;line-height:1.55;color:#e8e4dc;margin-bottom:18px;}
+.insight-sl{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#555;font-family:'Fragment Mono',monospace;margin-bottom:8px;}
+.insight-task{display:flex;align-items:center;gap:10px;background:#1e1c1a;border-radius:8px;padding:14px 16px;cursor:pointer;transition:background 0.15s;}
+.insight-task:hover{background:#252320;}
+.insight-arrow{font-size:14px;color:var(--red);}
+.insight-tn{font-size:14px;font-weight:600;color:#f8f6f1;flex:1;}
+.insight-tm{font-family:'Fragment Mono',monospace;font-size:11px;color:#555;}
+
+.out-actions{display:flex;gap:10px;margin-top:24px;}
+.btn-out{flex:1;background:transparent;border:1.5px solid var(--border);border-radius:10px;padding:14px;font-family:'Familjen Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;transition:all 0.15s;}
+.btn-out:hover{border-color:var(--ink);color:var(--ink);}
+.btn-focus-go{flex:2;background:var(--red);color:#fff;border:none;border-radius:10px;padding:14px;font-family:'Familjen Grotesk',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:filter 0.15s;letter-spacing:0.02em;}
+.btn-focus-go:hover{filter:brightness(1.1);}
+
+
+/* ══════════════════════════════
+   SCREEN 3 — FOCUS
+══════════════════════════════ */
+#page-focus{
+  background:var(--ink);
+  color:#f8f6f1;
+  display:none;
+}
+#page-focus.active{display:flex;flex-direction:column;}
+
+.focus-inner{
+  padding:40px 24px 80px;
+  max-width:520px;
+  margin:0 auto;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  width:100%;
+}
+
+.focus-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:36px;}
+.focus-wm{font-family:'Fragment Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#333;text-transform:uppercase;}
+.focus-back{font-size:12px;color:#444;cursor:pointer;font-family:'Fragment Mono',monospace;background:none;border:none;transition:color 0.15s;}
+.focus-back:hover{color:#f8f6f1;}
+
+.focus-h{font-size:34px;font-weight:700;letter-spacing:-0.02em;margin-bottom:4px;line-height:1.1;}
+.focus-sub{font-size:12px;color:#555;margin-bottom:30px;font-family:'Fragment Mono',monospace;letter-spacing:0.04em;}
+
+.prog-wrap{margin-bottom:32px;}
+.prog-top{display:flex;justify-content:space-between;margin-bottom:10px;font-size:12px;font-family:'Fragment Mono',monospace;}
+.prog-pct{color:#f8f6f1;}
+.prog-lbl{color:#444;}
+.prog-track{height:3px;background:#222;border-radius:99px;overflow:hidden;}
+.prog-fill{height:100%;background:var(--red);border-radius:99px;transition:width 0.5s cubic-bezier(.34,1.56,.64,1);}
+
+.focus-task{
+  background:#161412;
+  border:1.5px solid #252220;
+  border-radius:12px;
+  padding:18px 20px;
+  margin-bottom:10px;
+  display:flex;
+  gap:14px;
+  align-items:center;
+  cursor:pointer;
+  transition:all 0.2s;
+  animation:sli 0.3s ease both;
+}
+@keyframes sli{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.focus-task:hover{border-color:#333;}
+.focus-task.done{opacity:0.28;border-color:#1a1a1a;}
+.focus-task.done .ftitle{text-decoration:line-through;}
+
+.fchk{width:26px;height:26px;border-radius:50%;border:1.5px solid #2a2a2a;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:transparent;transition:all 0.2s;}
+.focus-task.done .fchk{background:var(--red);border-color:var(--red);color:#fff;}
+
+.fbody{flex:1;}
+.ftitle{font-size:16px;font-weight:600;color:#f8f6f1;line-height:1.35;}
+.ftime{font-family:'Fragment Mono',monospace;font-size:11px;color:#444;margin-top:4px;}
+
+.done-msg{text-align:center;padding:40px 20px;display:none;flex-direction:column;align-items:center;gap:12px;flex:1;justify-content:center;}
+.done-emoji{font-size:48px;}
+.done-h{font-size:26px;font-weight:700;letter-spacing:-0.02em;}
+.done-sub{font-size:14px;color:#555;line-height:1.6;max-width:260px;text-align:center;}
+.done-btn{margin-top:20px;background:transparent;border:1.5px solid #2a2a2a;color:#f8f6f1;border-radius:10px;padding:14px 28px;font-family:'Familjen Grotesk',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:border-color 0.15s;}
+.done-btn:hover{border-color:#555;}
+
+/* ── LOADING ── */
+#load-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(248,246,241,0.97);
+  z-index:999;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  backdrop-filter:blur(4px);
+}
+#load-overlay.on{display:flex;}
+.load-ring{width:44px;height:44px;border:2px solid var(--border);border-top-color:var(--ink);border-radius:50%;animation:spin 0.7s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.load-h{font-size:15px;font-weight:600;color:var(--ink);}
+.load-s{font-size:11px;color:var(--muted);font-family:'Fragment Mono',monospace;letter-spacing:0.04em;animation:blk 1.6s ease infinite;}
+@keyframes blk{0%,100%{opacity:1;}50%{opacity:0.3;}}
+
+/* ══ FEATURE 1: CRISIS SCREEN ══ */
+#page-crisis{background:#0f0e0d;color:#f8f6f1;display:none;min-height:100vh;}
+#page-crisis.active{display:flex;flex-direction:column;justify-content:center;}
+.crisis-inner{padding:48px 28px 60px;max-width:480px;margin:0 auto;width:100%;}
+.crisis-icon{font-size:40px;margin-bottom:24px;display:block;}
+.crisis-h{font-size:26px;font-weight:700;letter-spacing:-0.02em;line-height:1.2;margin-bottom:14px;color:#f8f6f1;}
+.crisis-p{font-size:15px;color:#a09a92;line-height:1.75;margin-bottom:28px;}
+.crisis-p strong{color:#e8e4dc;}
+.crisis-resources{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
+.crisis-resource{background:#1a1816;border:1.5px solid #2a2825;border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:4px;}
+.cr-name{font-size:14px;font-weight:700;color:#f8f6f1;}
+.cr-detail{font-size:13px;color:#7a7570;font-family:'Fragment Mono',monospace;letter-spacing:0.02em;}
+.cr-action{display:inline-block;margin-top:6px;font-size:12px;font-weight:700;color:#e8321a;text-decoration:none;letter-spacing:0.04em;cursor:pointer;}
+.crisis-back{width:100%;background:transparent;border:1.5px solid #2a2825;border-radius:10px;padding:15px;font-family:'Familjen Grotesk',sans-serif;font-size:13px;font-weight:600;color:#7a7570;cursor:pointer;transition:border-color 0.15s;}
+.crisis-back:hover{border-color:#555;color:#f8f6f1;}
+
+/* ══ FEATURE 2: PRIVACY BADGE ══ */
+.privacy-badge{display:flex;align-items:center;gap:6px;font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:0.06em;color:#aaa49c;margin-top:10px;padding:7px 11px;background:#f0ede8;border-radius:6px;width:fit-content;}
+
+/* ══ FEATURE 3: STREAK ══ */
+.streak-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;}
+.streak-badge{display:flex;align-items:center;gap:6px;background:var(--card);border:1.5px solid var(--border);border-radius:20px;padding:7px 14px;font-size:12px;font-weight:700;color:var(--ink);font-family:'Fragment Mono',monospace;}
+.streak-badge.hot{border-color:#f0a500;background:#fffbf0;color:#b07800;}
+.streak-zero{font-family:'Fragment Mono',monospace;font-size:11px;color:var(--faint);letter-spacing:0.04em;}
+
+/* ══ FEATURE 4: SHARE MODAL ══ */
+#share-modal{display:none;position:fixed;inset:0;background:rgba(17,16,16,0.88);z-index:998;align-items:flex-end;justify-content:center;backdrop-filter:blur(6px);padding:0;}
+#share-modal.open{display:flex;}
+.share-sheet{background:var(--bg);border-radius:24px 24px 0 0;padding:24px 22px 48px;width:100%;max-width:520px;animation:slideUp 0.3s cubic-bezier(.34,1.56,.64,1);}
+@keyframes slideUp{from{transform:translateY(100%);}to{transform:translateY(0);}}
+.share-handle{width:36px;height:4px;background:var(--faint);border-radius:99px;margin:0 auto 20px;}
+.share-title{font-size:16px;font-weight:700;letter-spacing:-0.01em;margin-bottom:4px;}
+.share-sub{font-size:12px;color:var(--muted);font-family:'Fragment Mono',monospace;margin-bottom:18px;letter-spacing:0.03em;}
+.share-card-preview{background:#111010;border-radius:16px;padding:22px 20px;margin-bottom:16px;position:relative;overflow:hidden;}
+.share-card-preview::before{content:'';position:absolute;top:-30px;right:-30px;width:120px;height:120px;border:1px solid rgba(255,255,255,0.04);border-radius:50%;}
+.sc-eyebrow{font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#555;margin-bottom:12px;}
+.sc-title{font-size:17px;font-weight:700;color:#f8f6f1;letter-spacing:-0.02em;margin-bottom:14px;line-height:1.2;}
+.sc-title em{font-style:normal;color:#e8321a;}
+.sc-items{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;}
+.sc-item{display:flex;align-items:flex-start;gap:8px;background:#1a1816;border-radius:8px;padding:9px 12px;}
+.sc-x{font-size:11px;flex-shrink:0;margin-top:1px;}
+.sc-task{font-size:12px;font-weight:600;color:#6b6760;text-decoration:line-through;}
+.sc-reason{font-size:10px;color:#3a3530;font-style:italic;margin-top:2px;font-family:'Fragment Mono',monospace;}
+.sc-watermark{font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#333;text-align:right;}
+.share-caption{background:var(--card);border:1.5px solid var(--border);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:14px;font-style:italic;}
+.share-btns{display:flex;gap:10px;}
+.btn-share-copy{flex:1;background:var(--card);border:1.5px solid var(--border);border-radius:10px;padding:14px;font-family:'Familjen Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;transition:all 0.15s;}
+.btn-share-copy:hover{border-color:var(--ink);color:var(--ink);}
+.btn-share-main{flex:2;background:var(--ink);color:var(--bg);border:none;border-radius:10px;padding:14px;font-family:'Familjen Grotesk',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:opacity 0.15s;letter-spacing:0.02em;}
+.btn-share-main:hover{opacity:0.88;}
+.share-close{width:100%;background:transparent;border:none;font-family:'Fragment Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--faint);cursor:pointer;margin-top:12px;padding:8px;transition:color 0.15s;}
+.share-close:hover{color:var(--muted);}
+.share-trigger{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:var(--card);border:1.5px solid var(--border);border-radius:10px;padding:13px;font-family:'Familjen Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;transition:all 0.15s;margin-top:8px;}
+.share-trigger:hover{border-color:var(--ink);color:var(--ink);}
+
+/* ══ FEATURE 5: EMAIL MODAL ══ */
+#email-modal{display:none;position:fixed;inset:0;background:rgba(17,16,16,0.88);z-index:997;align-items:flex-end;justify-content:center;backdrop-filter:blur(6px);}
+#email-modal.open{display:flex;}
+.email-sheet{background:var(--bg);border-radius:24px 24px 0 0;padding:28px 24px 52px;width:100%;max-width:520px;animation:slideUp 0.35s cubic-bezier(.34,1.56,.64,1);}
+.email-handle{width:36px;height:4px;background:var(--faint);border-radius:99px;margin:0 auto 22px;}
+.email-icon{font-size:32px;margin-bottom:12px;display:block;}
+.email-h{font-size:20px;font-weight:700;letter-spacing:-0.02em;margin-bottom:8px;}
+.email-p{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:22px;}
+.email-input-row{display:flex;gap:8px;margin-bottom:10px;}
+.email-field{flex:1;background:var(--card);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;font-family:'Familjen Grotesk',sans-serif;font-size:14px;color:var(--ink);outline:none;transition:border-color 0.2s;}
+.email-field:focus{border-color:var(--ink);}
+.email-field::placeholder{color:var(--faint);}
+.btn-email-sub{background:var(--ink);color:var(--bg);border:none;border-radius:10px;padding:14px 18px;font-family:'Familjen Grotesk',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:opacity 0.15s;white-space:nowrap;}
+.btn-email-sub:hover{opacity:0.88;}
+.email-skip{width:100%;background:transparent;border:none;font-family:'Fragment Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--faint);cursor:pointer;padding:10px;transition:color 0.15s;}
+.email-skip:hover{color:var(--muted);}
+.email-privacy{font-family:'Fragment Mono',monospace;font-size:10px;color:var(--faint);letter-spacing:0.04em;text-align:center;margin-top:4px;}
+
+/* ══════════════════════════════════════════
+   V5: SOFT GATE MODAL
+══════════════════════════════════════════ */
+#softgate-modal{display:none;position:fixed;inset:0;background:rgba(17,16,16,0.92);z-index:996;align-items:flex-end;justify-content:center;backdrop-filter:blur(8px);}
+#softgate-modal.open{display:flex;}
+.sg-sheet{background:var(--bg);border-radius:24px 24px 0 0;padding:30px 24px 52px;width:100%;max-width:520px;animation:slideUp 0.35s cubic-bezier(.34,1.56,.64,1);}
+.sg-handle{width:36px;height:4px;background:var(--faint);border-radius:99px;margin:0 auto 22px;}
+.sg-icon{font-size:28px;margin-bottom:12px;display:block;}
+.sg-h{font-size:20px;font-weight:700;letter-spacing:-0.02em;margin-bottom:8px;line-height:1.2;}
+.sg-p{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:22px;}
+.sg-email-row{display:flex;gap:8px;margin-bottom:12px;}
+.sg-field{flex:1;background:var(--card);border:1.5px solid var(--border);border-radius:10px;padding:14px 16px;font-family:'Familjen Grotesk',sans-serif;font-size:14px;color:var(--ink);outline:none;transition:border-color 0.2s;}
+.sg-field:focus{border-color:var(--ink);}
+.sg-field::placeholder{color:var(--faint);}
+.sg-save-btn{background:var(--ink);color:var(--bg);border:none;border-radius:10px;padding:14px 16px;font-family:'Familjen Grotesk',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:opacity 0.15s;white-space:nowrap;}
+.sg-save-btn:hover{opacity:0.88;}
+.sg-skip{width:100%;background:transparent;border:1.5px solid var(--border);border-radius:10px;padding:13px;font-family:'Familjen Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer;transition:all 0.15s;margin-top:4px;}
+.sg-skip:hover{border-color:var(--ink);color:var(--ink);}
+.sg-privacy{font-family:'Fragment Mono',monospace;font-size:10px;color:var(--faint);letter-spacing:0.04em;text-align:center;margin-top:8px;}
+
+/* ══════════════════════════════════════════
+   V5: POST-RESULT UPSELL BANNER
+══════════════════════════════════════════ */
+.upsell-banner{
+  background:#111010;border-radius:14px;
+  padding:20px 20px;margin-top:24px;
+  position:relative;overflow:hidden;
+}
+.upsell-banner::before{content:'';position:absolute;top:-40px;right:-40px;width:140px;height:140px;border:1px solid rgba(255,255,255,0.04);border-radius:50%;}
+.ub-ey{font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:#555;margin-bottom:8px;}
+.ub-h{font-size:17px;font-weight:700;color:#f8f6f1;letter-spacing:-0.02em;margin-bottom:6px;line-height:1.25;}
+.ub-p{font-size:13px;color:#7a7570;line-height:1.55;margin-bottom:16px;}
+.ub-cta{display:block;width:100%;background:var(--red);color:#fff;border:none;border-radius:10px;padding:14px;font-family:'Familjen Grotesk',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:filter 0.15s;letter-spacing:0.02em;text-align:center;}
+.ub-cta:hover{filter:brightness(1.1);}
+.ub-features{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
+.ub-feat{font-family:'Fragment Mono',monospace;font-size:10px;color:#555;padding:4px 10px;background:#1a1816;border-radius:20px;letter-spacing:0.04em;}
+.ub-feat.on{color:#3ecf8e;background:rgba(62,207,142,0.1);}
+
+/* ══════════════════════════════════════════
+   V5: PRICING PAGE
+══════════════════════════════════════════ */
+#page-pricing{background:var(--bg);display:none;overflow-y:auto;}
+#page-pricing.active{display:block;}
+.pricing-inner{padding:36px 22px 100px;max-width:520px;margin:0 auto;}
+.pricing-back{display:flex;align-items:center;gap:8px;font-family:'Fragment Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--muted);cursor:pointer;margin-bottom:28px;background:none;border:none;transition:color 0.15s;}
+.pricing-back:hover{color:var(--ink);}
+.pricing-h{font-size:28px;font-weight:700;letter-spacing:-0.03em;line-height:1.1;margin-bottom:8px;}
+.pricing-h em{font-style:normal;color:var(--red);}
+.pricing-sub{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:32px;}
+.plan-card{background:var(--card);border:1.5px solid var(--border);border-radius:16px;padding:22px 20px;margin-bottom:14px;position:relative;overflow:hidden;transition:border-color 0.2s;}
+.plan-card.recommended{border-color:var(--ink);background:#fff;}
+.plan-card.recommended::before{content:'MOST POPULAR';position:absolute;top:0;right:0;background:var(--ink);color:var(--bg);font-family:'Fragment Mono',monospace;font-size:8px;letter-spacing:0.14em;padding:5px 12px;border-radius:0 0 0 8px;}
+.plan-name{font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.plan-price{font-size:36px;font-weight:800;letter-spacing:-0.04em;line-height:1;margin-bottom:4px;}
+.plan-price sup{font-size:16px;font-weight:600;vertical-align:top;margin-top:6px;display:inline-block;}
+.plan-price span{font-size:14px;font-weight:400;color:var(--muted);}
+.plan-tagline{font-size:12px;color:var(--muted);margin-bottom:18px;font-style:italic;}
+.plan-features{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
+.pf-item{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--ink);line-height:1.4;}
+.pf-check{color:var(--green);flex-shrink:0;font-size:13px;margin-top:1px;}
+.pf-item.muted-feat{color:var(--faint);}
+.pf-item.muted-feat .pf-check{color:var(--faint);}
+.plan-cta{display:block;width:100%;border-radius:10px;padding:14px;font-family:'Familjen Grotesk',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all 0.15s;letter-spacing:0.02em;text-align:center;border:none;}
+.cta-free{background:var(--bg);border:1.5px solid var(--border);color:var(--muted);}
+.cta-free:hover{border-color:var(--ink);color:var(--ink);}
+.cta-pro{background:var(--ink);color:var(--bg);}
+.cta-pro:hover{opacity:0.88;}
+.cta-elite{background:var(--red);color:#fff;}
+.cta-elite:hover{filter:brightness(1.1);}
+.pricing-guarantee{text-align:center;font-family:'Fragment Mono',monospace;font-size:11px;color:var(--faint);letter-spacing:0.06em;margin-top:16px;}
+
+/* Hard truth mode toggle on dump screen */
+.mode-row{display:flex;gap:6px;margin-bottom:16px;}
+.mode-btn{flex:1;background:var(--card);border:1.5px solid var(--border);border-radius:8px;padding:9px 6px;text-align:center;cursor:pointer;transition:all 0.15s;}
+.mode-btn .m-icon{font-size:14px;}
+.mode-btn .m-lbl{font-size:10px;font-weight:600;color:var(--muted);display:block;margin-top:3px;letter-spacing:0.02em;}
+.mode-btn.selected{background:var(--ink);border-color:var(--ink);}
+.mode-btn.selected .m-lbl{color:#f8f6f1;}
+.mode-label-row{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;margin-top:16px;font-family:'Fragment Mono',monospace;}
+/* Job search mode badge */
+.job-mode-active{background:#fffbf0;border:1.5px solid #f0a500;border-radius:10px;padding:8px 12px;margin-bottom:12px;display:none;font-size:12px;color:#b07800;font-family:'Fragment Mono',monospace;letter-spacing:0.03em;}
+.job-mode-active.on{display:block;}
+
+/* Avoidance banner on output */
+.avoidance-banner{background:#fffbf0;border:1.5px solid #f0a500;border-radius:12px;padding:16px 18px;margin-bottom:12px;display:none;}
+.av-head{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.av-icon{font-size:16px;}
+.av-label{font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#b07800;font-family:'Fragment Mono',monospace;}
+.av-text{font-size:13px;color:#7a5800;line-height:1.5;}
+.av-text strong{color:#5a3800;}
+
+/* Weekly truth report teaser */
+.truth-teaser{background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:18px 20px;margin-top:14px;}
+.tt-head{font-family:'Fragment Mono',monospace;font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--faint);margin-bottom:10px;}
+.tt-stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;}
+.tt-stat{background:var(--bg);border-radius:8px;padding:10px;text-align:center;}
+.tt-val{font-size:20px;font-weight:800;letter-spacing:-0.02em;color:var(--ink);display:block;}
+.tt-lbl{font-size:10px;color:var(--muted);font-family:'Fragment Mono',monospace;letter-spacing:0.04em;display:block;margin-top:2px;}
+.tt-lock{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);cursor:pointer;}
+.tt-lock-icon{font-size:14px;}
+.tt-lock-text{flex:1;line-height:1.4;}
+.tt-lock-btn{font-size:11px;font-weight:700;color:var(--red);white-space:nowrap;font-family:'Fragment Mono',monospace;letter-spacing:0.04em;}
+
+
+/* ══ FIX 2: POINT OF NO RETURN PAYWALL ══ */
+#paywall-overlay{
+  display:none;position:fixed;inset:0;
+  background:#0f0e0d;
+  z-index:995;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:32px 24px;
+  animation:fadeIn2 0.4s ease both;
+}
+@keyframes fadeIn2{from{opacity:0;}to{opacity:1;}}
+#paywall-overlay.open{display:flex;}
+.pw-overlay-inner{max-width:420px;width:100%;text-align:center;}
+.pw-overlay-ey{font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:#555;margin-bottom:20px;}
+.pw-overlay-h{font-size:clamp(26px,6vw,36px);font-weight:800;letter-spacing:-0.03em;line-height:1.1;color:#f8f6f1;margin-bottom:12px;}
+.pw-overlay-h em{font-style:normal;color:#e8321a;}
+.pw-overlay-sub{font-size:15px;color:#7a7570;line-height:1.65;margin-bottom:32px;}
+.pw-overlay-sub strong{color:#a09a92;}
+.pw-big-cta{display:block;width:100%;background:#e8321a;color:#fff;border:none;border-radius:12px;padding:20px;font-family:'Familjen Grotesk',sans-serif;font-size:16px;font-weight:800;letter-spacing:0.02em;cursor:pointer;transition:filter 0.15s;margin-bottom:12px;}
+.pw-big-cta:hover{filter:brightness(1.1);}
+.pw-trial-note{font-family:'Fragment Mono',monospace;font-size:10px;color:#555;letter-spacing:0.06em;margin-bottom:24px;}
+.pw-skip{background:none;border:none;font-family:'Fragment Mono',monospace;font-size:11px;color:#333;cursor:pointer;letter-spacing:0.06em;padding:8px;transition:color 0.15s;}
+.pw-skip:hover{color:#666;}
+.pw-features-row{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:28px;}
+.pw-feat-item{font-size:12px;color:#555;display:flex;align-items:center;gap:5px;}
+.pw-feat-check{color:#1a9e5c;font-size:12px;}
+
+/* ══ FIX 4: TOMORROW HOOK (done screen) ══ */
+.tomorrow-hook{
+  background:#111010;border-radius:14px;
+  padding:22px 20px;margin-top:20px;
+  text-align:center;
+}
+.th-day{font-family:'Fragment Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#1a9e5c;margin-bottom:8px;}
+.th-h{font-size:18px;font-weight:700;color:#f8f6f1;letter-spacing:-0.01em;margin-bottom:6px;line-height:1.25;}
+.th-sub{font-size:13px;color:#7a7570;line-height:1.5;margin-bottom:14px;}
+.th-time{font-family:'Fragment Mono',monospace;font-size:12px;color:#e8321a;letter-spacing:0.04em;}
+
+</style>
+</head>
+<body>
+
+<!-- LOADING -->
+<div id="load-overlay">
+  <div class="load-ring"></div>
+  <div class="load-h" id="lh">Reading your mind...</div>
+  <div class="load-s" id="ls">sorting through the chaos</div>
+</div>
+
+<!-- FEATURE 1: CRISIS SCREEN -->
+<div class="page" id="page-crisis">
+  <div class="crisis-inner">
+    <span class="crisis-icon">🤍</span>
+    <h2 class="crisis-h">Hey. We see you.<br>This sounds really heavy.</h2>
+    <p class="crisis-p">
+      Before we sort any tasks — <strong>how are you doing right now?</strong><br><br>
+      What you wrote sounds like more than a to-do list problem. That's okay. You don't have to figure everything out today.<br><br>
+      If you're struggling, please reach out to someone who can really help:
+    </p>
+    <div class="crisis-resources">
+      <div class="crisis-resource">
+        <div class="cr-name">Crisis Text Line</div>
+        <div class="cr-detail">Text HOME to 741741 · Free, 24/7, confidential</div>
+        <span class="cr-action" onclick="window.open('sms:741741')">Text now →</span>
+      </div>
+      <div class="crisis-resource">
+        <div class="cr-name">988 Suicide &amp; Crisis Lifeline</div>
+        <div class="cr-detail">Call or text 988 · Available 24/7</div>
+        <span class="cr-action" onclick="window.open('tel:988')">Call 988 →</span>
+      </div>
+      <div class="crisis-resource">
+        <div class="cr-name">International Resources</div>
+        <div class="cr-detail">Crisis centres worldwide</div>
+        <span class="cr-action" onclick="window.open('https://www.iasp.info/resources/Crisis_Centres/')">Find support →</span>
+      </div>
+    </div>
+    <button class="crisis-back" onclick="goTo('page-dump')">← I'm okay — take me back</button>
+  </div>
+</div>
+
+<!-- FEATURE 4: SHARE MODAL -->
+<div id="share-modal" onclick="closeShareModal(event)">
+  <div class="share-sheet" onclick="event.stopPropagation()">
+    <div class="share-handle"></div>
+    <div class="share-title">Share your Let Go moment</div>
+    <div class="share-sub">The part that hits different 🔥</div>
+    <div class="share-card-preview" id="shareCardPreview">
+      <div class="sc-eyebrow">clearhead · let go</div>
+      <div class="sc-title">I stopped pretending<br>these <em>mattered.</em></div>
+      <div class="sc-items" id="shareDropItems"></div>
+      <div class="sc-watermark">clearhead.app · free</div>
+    </div>
+    <div class="share-caption" id="shareCaption">Loading caption...</div>
+    <div class="share-btns">
+      <button class="btn-share-copy" id="copyBtn" onclick="copyCaption()">Copy caption</button>
+      <button class="btn-share-main" onclick="shareIt()">Share →</button>
+    </div>
+    <button class="share-close" onclick="closeShareModal()">close</button>
+  </div>
+</div>
+
+<!-- FEATURE 5: EMAIL MODAL -->
+<div id="email-modal" onclick="closeEmailModal(event)">
+  <div class="email-sheet" onclick="event.stopPropagation()">
+    <div class="email-handle"></div>
+    <span class="email-icon">📬</span>
+    <div class="email-h">Want your weekly brain pattern?</div>
+    <p class="email-p">After 7 dumps, ClearHead spots your recurring themes — the things that keep showing up. We'll send a weekly insight. No spam. Ever.</p>
+    <div class="email-input-row">
+      <input class="email-field" id="emailField" type="email" placeholder="your@email.com"/>
+      <button class="btn-email-sub" onclick="submitEmail()">Get it</button>
+    </div>
+    <div class="email-privacy">🔒 dumps never stored · unsubscribe anytime</div>
+    <button class="email-skip" onclick="closeEmailModal()">skip for now</button>
+  </div>
+</div>
+
+
+<!-- FIX 2: POINT OF NO RETURN PAYWALL -->
+<div id="paywall-overlay">
+  <div class="pw-overlay-inner">
+    <div class="pw-overlay-ey">you just did something rare</div>
+    <h2 class="pw-overlay-h">You just proved you can<br>get <em>control in 60 seconds.</em></h2>
+    <p class="pw-overlay-sub">
+      Tomorrow, you'll be back to the same chaos.<br>
+      <strong>Unless you make this a daily system.</strong>
+    </p>
+    <div class="pw-features-row">
+      <span class="pw-feat-item"><span class="pw-feat-check">✓</span> Daily clarity</span>
+      <span class="pw-feat-item"><span class="pw-feat-check">✓</span> Avoidance alerts</span>
+      <span class="pw-feat-item"><span class="pw-feat-check">✓</span> Weekly truth report</span>
+      <span class="pw-feat-item"><span class="pw-feat-check">✓</span> Hard truth mode</span>
+    </div>
+    <button class="pw-big-cta" onclick="paywallCheckout()">Start showing up tomorrow →</button>
+    <div style="font-size:13px;color:#e8321a;margin-top:-4px;margin-bottom:14px;font-weight:600;text-align:center;">You've already avoided at least one thing today.</div>
+    <div class="pw-trial-note">7-day free trial · cancel anytime · $19/mo after</div>
+    <div style="font-size:13px;font-weight:600;color:#7a7570;margin-bottom:14px;text-align:center;line-height:1.5;">Most people don't need more time.<br>They need to stop avoiding.</div>
+    <button class="pw-skip" onclick="closePaywall()">go back to doing this manually</button>
+  </div>
+</div>
+
+<!-- V5: SOFT GATE MODAL -->
+<div id="softgate-modal">
+  <div class="sg-sheet">
+    <div class="sg-handle"></div>
+    <span class="sg-icon">💾</span>
+    <div class="sg-h">Want to save this plan + track your progress?</div>
+    <p class="sg-p">Drop your email to save today's clarity plan and see your weekly patterns. Free.</p>
+    <div class="sg-email-row">
+      <input class="sg-field" id="sgEmailField" type="email" placeholder="your@email.com"/>
+      <button class="sg-save-btn" onclick="softgateSave()">Save my plan</button>
+    </div>
+    <div class="sg-privacy">🔒 not stored · no spam · cancel anytime</div>
+    <button class="sg-skip" onclick="softgateContinue()">Continue free →</button>
+  </div>
+</div>
+
+<!-- V5: PRICING PAGE -->
+<div class="page" id="page-pricing">
+  <div class="pricing-inner">
+    <button class="pricing-back" onclick="goTo('page-output')">← back</button>
+    <h1 class="pricing-h">Stop drowning in tasks.<br>Do what <em>actually</em> matters.</h1>
+    <p class="pricing-sub">Most people don't need more discipline.<br>They need fewer decisions.</p>
+
+    <!-- FREE -->
+    <div class="plan-card">
+      <div class="plan-name">Free</div>
+      <div class="plan-price">$0</div>
+      <div class="plan-tagline">"For when you're overwhelmed"</div>
+      <div class="plan-features">
+        <div class="pf-item"><span class="pf-check">✓</span>1 clarity session per day</div>
+        <div class="pf-item"><span class="pf-check">✓</span>Do Now / Let Go sorting</div>
+        <div class="pf-item"><span class="pf-check">✓</span>Focus mode</div>
+        <div class="pf-item muted-feat"><span class="pf-check">—</span>No streak tracking</div>
+        <div class="pf-item muted-feat"><span class="pf-check">—</span>No pattern memory</div>
+        <div class="pf-item muted-feat"><span class="pf-check">—</span>No weekly truth report</div>
+      </div>
+      <button class="plan-cta cta-free" onclick="goTo('page-dump')">Continue free</button>
+    </div>
+
+    <!-- PRO -->
+    <div class="plan-card recommended">
+      <div class="plan-name">Pro</div>
+      <div class="plan-price"><sup>$</sup>19<span>/mo</span></div>
+      <div class="plan-tagline">"Stop losing entire days to overthinking"</div>
+      <div class="plan-features">
+        <div class="pf-item"><span class="pf-check">✓</span>Everything in Free</div>
+        <div class="pf-item"><span class="pf-check">✓</span><strong>Daily clarity system</strong> — habit loop built in</div>
+        <div class="pf-item"><span class="pf-check">✓</span><strong>Streak tracking</strong> — never lose momentum</div>
+        <div class="pf-item"><span class="pf-check">✓</span><strong>Avoidance detection</strong> — "You've ignored this 4 times"</div>
+        <div class="pf-item"><span class="pf-check">✓</span><strong>Weekly truth report</strong> — what you said vs what you did</div>
+        <div class="pf-item"><span class="pf-check">✓</span><strong>Hard truth mode</strong> — brutal honesty toggle</div>
+        <div class="pf-item"><span class="pf-check">✓</span>AI pattern detection across dumps</div>
+      </div>
+      <div style="font-size:12px;color:#e8321a;margin-bottom:12px;font-weight:600;text-align:center;">If you don't use this tomorrow, nothing changes.</div>
+      <button class="plan-cta cta-pro" onclick="startCheckout('pro')">Get daily clarity →</button>
+    </div>
+
+    <!-- ELITE -->
+    <div class="plan-card">
+      <div class="plan-name">Elite</div>
+      <div class="plan-price"><sup>$</sup>49<span>/mo</span></div>
+      <div class="plan-tagline">"For people who work hard on the wrong things"</div>
+      <div class="plan-features">
+        <div class="pf-item"><span class="pf-check">✓</span>Everything in Pro</div>
+        <div class="pf-item"><span class="pf-check">✓</span><strong>Deep behaviour analysis</strong> — monthly life audit</div>
+        <div class="pf-item"><span class="pf-check">✓</span><strong>Decision filters</strong> — your personal "what to ignore" rules</div>
+        <div class="pf-item"><span class="pf-check">✓</span><strong>Priority coaching prompts</strong> — AI trained on your patterns</div>
+        <div class="pf-item"><span class="pf-check">✓</span>ClearHead OS framework</div>
+        <div class="pf-item"><span class="pf-check">✓</span>Early access to all new features</div>
+      </div>
+      <button class="plan-cta cta-elite" onclick="startCheckout('elite')">Get control →</button>
+    </div>
+
+    <div class="pricing-guarantee">🔒 cancel anytime · no questions asked · 7-day refund</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════
+     LANDING
+══════════════════════════════ -->
+<div class="page active" id="page-landing">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">clearhead · stop working on the wrong things · free</div>
+    <h1 class="hero-h1">You're not<br>overwhelmed.<br>You're <em>avoiding</em><br>something.</h1>
+    <p class="hero-sub">
+      Dump everything in your head in <strong>60 seconds</strong>.<br>
+      Get a clear plan — and <strong>permission to ignore the rest.</strong>
+    </p>
+    <p class="hero-identity">For people who are done wasting days.</p>
+    <div class="hero-cta-wrap">
+      <button class="hero-cta" id="heroCta" onclick="heroClick(this)">Clear your head now →</button>
+      <div class="hero-cta-note">⚡ 60 seconds → instant clarity &nbsp;·&nbsp; 🧠 no thinking required &nbsp;·&nbsp; ❌ drop what doesn't matter</div>
+    </div>
+  </div>
+
+  <!-- VISUAL DEMO -->
+  <div class="demo-section">
+    <div class="demo-label">see it in action</div>
+    <div class="demo-flow">
+
+      <!-- BEFORE -->
+      <div class="demo-before" style="width:100%">
+        <div class="demo-before-label">your brain right now</div>
+        <div class="demo-dump-text">
+          "fix resume again, apply later maybe, scroll linkedin, gym?? call mom, clean room, idk where to even start, feel behind on everything..."
+        </div>
+      </div>
+
+      <!-- ARROW -->
+      <div class="demo-arrow">↓</div>
+
+      <!-- AFTER -->
+      <div class="demo-after" style="width:100%">
+        <div class="demo-after-row">
+          <span class="demo-badge db-now">Do Now</span>
+          <span class="demo-task-text">Text Sarah back <span style="font-family:'Fragment Mono',monospace;font-size:11px;color:#aaa49c;">(stop overthinking it · 2 min)</span></span>
+        </div>
+        <div class="demo-after-row">
+          <span class="demo-badge db-now">Do Now</span>
+          <span class="demo-task-text">Pick 1 job · apply it <span style="font-family:'Fragment Mono',monospace;font-size:11px;color:#aaa49c;">(not 10 · just 1 · 15 min)</span></span>
+        </div>
+        <div class="demo-after-row">
+          <span class="demo-badge db-later">Later</span>
+          <span class="demo-task-text" style="color:#aaa49c;">Start gym → this week</span>
+        </div>
+        <div class="demo-after-row" style="border-bottom:none;">
+          <span class="demo-badge db-drop">Let Go</span>
+          <span class="demo-drop-reason">❌ "Figure out my life" — too vague to act on</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MID-PAGE CTA -->
+  <div style="background:var(--bg);padding:0 22px 48px;text-align:center;">
+    <p style="font-size:14px;color:var(--muted);margin-bottom:6px;font-style:italic;">You already know what you should be doing.<br>You're just not doing it.</p>
+    <button onclick="goTo('page-dump')" style="background:var(--ink);color:var(--bg);border:none;border-radius:10px;padding:16px 28px;font-family:'Familjen Grotesk',sans-serif;font-size:15px;font-weight:700;cursor:pointer;width:100%;max-width:340px;transition:opacity 0.15s;" onmouseover="this.style.opacity=0.88" onmouseout="this.style.opacity=1">Get clarity now →</button>
+    <div style="font-family:'Fragment Mono',monospace;font-size:10px;color:var(--faint);margin-top:10px;letter-spacing:0.06em;">dump everything · takes 60 seconds · free</div>
+  </div>
+
+  <!-- LET GO — THE DIFFERENTIATOR -->
+  <div class="letgo-section">
+    <div class="letgo-eyebrow">the part no other app has</div>
+    <h2 class="letgo-h2">Most apps add tasks.<br><em style="font-style:normal;color:var(--red);">We delete them.</em></h2>
+    <p class="letgo-sub">
+      You don't need more discipline.<br>
+      <strong>You need permission to ignore things.</strong>
+    </p>
+
+    <div class="letgo-cards">
+      <div class="letgo-card">
+        <div class="letgo-x">❌</div>
+        <div class="letgo-body">
+          <div class="letgo-task">"Figure out my life"</div>
+          <div class="letgo-reason">too vague to act on</div>
+        </div>
+      </div>
+      <div class="letgo-card">
+        <div class="letgo-x">❌</div>
+        <div class="letgo-body">
+          <div class="letgo-task">"Start gym"</div>
+          <div class="letgo-reason">not today — schedule it, don't stress it</div>
+        </div>
+      </div>
+      <div class="letgo-card">
+        <div class="letgo-x">❌</div>
+        <div class="letgo-body">
+          <div class="letgo-task">"Be more productive"</div>
+          <div class="letgo-reason">guilt-based, not actionable</div>
+        </div>
+      </div>
+      <div class="letgo-card">
+        <div class="letgo-x">❌</div>
+        <div class="letgo-body">
+          <div class="letgo-task">"Fix everything"</div>
+          <div class="letgo-reason">unrealistic expectation</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="letgo-philosophy">
+      <strong>This is not a productivity tool.</strong><br><br>
+      It's a clarity system. Most of your overwhelm isn't a task problem — it's a <em>permission</em> problem. You need someone to tell you what you can stop carrying today.
+    </div>
+  </div>
+
+  <!-- DIFF STRIP -->
+  <div class="diff-strip">
+    <div class="diff-cell">
+      <div class="diff-cell-label">Other apps</div>
+      <div class="diff-cell-text struck">Add more tasks.<br>Build a system.<br>Track everything.</div>
+    </div>
+    <div class="diff-cell">
+      <div class="diff-cell-label">ClearHead</div>
+      <div class="diff-cell-text">Remove the noise.<br>Do 3 things.<br>Let the rest go.</div>
+    </div>
+  </div>
+
+
+  <!-- COMPARISON BLOCK -->
+  <div style="background:var(--bg);padding:40px 22px 0;">
+    <div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;text-align:center;">why clearhead is different</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border-radius:12px;overflow:hidden;">
+      <div style="background:#1a1816;padding:20px 16px;">
+        <div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#444;margin-bottom:12px;">other apps</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="font-size:13px;color:#4a4540;text-decoration:line-through;line-height:1.4;">organize everything</div>
+          <div style="font-size:13px;color:#4a4540;text-decoration:line-through;line-height:1.4;">add more tasks</div>
+          <div style="font-size:13px;color:#4a4540;text-decoration:line-through;line-height:1.4;">plan your whole life</div>
+          <div style="font-size:13px;color:#4a4540;text-decoration:line-through;line-height:1.4;">require discipline</div>
+          <div style="font-size:13px;color:#4a4540;text-decoration:line-through;line-height:1.4;">make you feel behind</div>
+        </div>
+      </div>
+      <div style="background:var(--card);padding:20px 16px;">
+        <div style="font-family:'Fragment Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);margin-bottom:12px;">clearhead</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="font-size:13px;font-weight:600;color:var(--ink);line-height:1.4;">cut through noise</div>
+          <div style="font-size:13px;font-weight:600;color:var(--ink);line-height:1.4;">remove unnecessary tasks</div>
+          <div style="font-size:13px;font-weight:600;color:var(--ink);line-height:1.4;">do what matters today</div>
+          <div style="font-size:13px;font-weight:600;color:var(--ink);line-height:1.4;">works with your energy</div>
+          <div style="font-size:13px;font-weight:600;color:var(--green);line-height:1.4;">gives you permission to stop</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOCIAL PROOF -->
+  <div class="social-section">
+    <div class="social-head">real people · real clarity</div>
+    <div class="q-card">
+      <div class="q-text">"I felt lighter the second I hit submit. It called me out in the best way."</div>
+      <div class="q-attr">— Maya R., designer</div>
+    </div>
+    <div class="q-card">
+      <div class="q-text">"The 'Let Go' section hit different. I needed someone to tell me to stop."</div>
+      <div class="q-attr">— James T., freelancer</div>
+    </div>
+    <div class="q-card">
+      <div class="q-text">"I actually finished things for once. Not because I had more tasks — because I had fewer."</div>
+      <div class="q-attr">— Priya S., engineer</div>
+    </div>
+  </div>
+
+  <!-- FINAL CTA -->
+  <div class="final-cta-section">
+    <div class="final-cta-h">Your head is full.<br>It doesn't have to be.</div>
+    <div class="final-cta-sub">You'll either keep overthinking<br>— or get clarity in 60 seconds.<br><span style="color:#666;font-size:12px;">your choice.</span></div>
+    <button class="final-cta-btn" onclick="heroClick(this)">Get your first clear plan →</button>
+    <div class="final-note">free forever · no account needed</div>
+  </div>
+
+</div>
+
+
+<!-- ══════════════════════════════
+     SCREEN 1 — DUMP
+══════════════════════════════ -->
+<div class="page" id="page-dump">
+  <div class="dump-top">
+    <div class="streak-bar">
+      <div class="wordmark">clearhead</div>
+      <div id="streakBadge" class="streak-badge">Day 1</div>
+    </div>
+    <div class="dump-h">What's in your head right now?</div>
+    <div class="dump-hint">No structure needed. Tasks, worries, guilt, ideas — all of it.</div>
+    <textarea class="dump-ta" id="dumpTA" placeholder="What's on your mind? No structure needed." oninput="onType()"></textarea>
+    <div class="energy-label">Energy level</div>
+    <div class="energy-row">
+      <div class="energy-btn" id="e-low" onclick="setE('low')">
+        <div class="e-icon">⚡</div>
+        <span class="e-lbl">Low</span>
+      </div>
+      <div class="energy-btn selected" id="e-medium" onclick="setE('medium')">
+        <div class="e-icon">⚡⚡</div>
+        <span class="e-lbl">Medium</span>
+      </div>
+      <div class="energy-btn" id="e-high" onclick="setE('high')">
+        <div class="e-icon">⚡⚡⚡</div>
+        <span class="e-lbl">High</span>
+      </div>
+    </div>
+    <div class="mode-label-row">AI tone</div>
+    <div class="mode-row">
+      <div class="mode-btn" id="m-soft" onclick="setMode('soft')">
+        <div class="m-icon">🌿</div>
+        <span class="m-lbl">Gentle</span>
+      </div>
+      <div class="mode-btn selected" id="m-direct" onclick="setMode('direct')">
+        <div class="m-icon">⚡</div>
+        <span class="m-lbl">Direct</span>
+      </div>
+      <div class="mode-btn" id="m-brutal" onclick="setMode('brutal')">
+        <div class="m-icon">🔥</div>
+        <span class="m-lbl">Brutal</span>
+      </div>
+      <div class="mode-btn" id="m-jobsearch" onclick="setMode('jobsearch')">
+        <div class="m-icon">💼</div>
+        <span class="m-lbl">Job Search</span>
+      </div>
+    </div>
+    <div class="job-mode-active" id="jobModeAlert">💼 Job Search Mode — AI focuses only on what gets you interviews</div>
+  </div>
+  <div class="dump-footer">
+    <button class="btn-main" id="dumpBtn" onclick="runDump()" disabled>Clear my head →</button>
+    <div class="privacy-badge"><span class="lock">🔒</span> Processed securely. Saved only if you choose.</div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════
+     SCREEN 2 — OUTPUT
+══════════════════════════════ -->
+<div class="page" id="page-output">
+  <div class="output-inner">
+    <div class="out-wm">clearhead · your day</div>
+
+    <div>
+      <div class="sec-head"><span class="sec-badge bn">🔴 Do Now</span><span class="sec-ct" id="cn"></span></div>
+      <div id="l-now"></div>
+    </div>
+    <div>
+      <div class="sec-head" style="margin-top:20px;"><span class="sec-badge bt">🟡 Do Today</span><span class="sec-ct" id="ct"></span></div>
+      <div id="l-today"></div>
+    </div>
+    <div>
+      <div class="sec-head" style="margin-top:20px;"><span class="sec-badge bl">🟢 Schedule Later</span><span class="sec-ct" id="cl"></span></div>
+      <div id="l-later"></div>
+    </div>
+    <div>
+      <div class="sec-head" style="margin-top:20px;"><span class="sec-badge bd">🔥 Let Go</span><span class="sec-ct" id="cd"></span></div>
+      <div id="l-drop"></div>
+      <button class="share-trigger" id="shareBtn" onclick="openShareModal()" style="display:none;">
+        📤 Share your Let Go moment
+      </button>
+    </div>
+
+    <div class="insight-block">
+      <div class="insight-ey">insight</div>
+      <div class="insight-txt" id="ins-txt">—</div>
+      <div class="insight-sl">start here</div>
+      <div class="insight-task" onclick="goFocus()">
+        <span class="insight-arrow">👉</span>
+        <span class="insight-tn" id="ins-task">—</span>
+        <span class="insight-tm" id="ins-time">—</span>
+      </div>
+    </div>
+
+    <!-- V5: AVOIDANCE BANNER -->
+    <div class="avoidance-banner" id="avoidanceBanner">
+      <div class="av-head">
+        <span class="av-icon">⚠️</span>
+        <span class="av-label">Pattern detected</span>
+      </div>
+      <div class="av-text" id="avoidanceText">You've been avoiding something.</div>
+    </div>
+
+    <!-- V5: WEEKLY TRUTH TEASER -->
+    <div class="truth-teaser">
+      <div class="tt-head">your weekly truth report</div>
+      <div class="tt-stat-row">
+        <div class="tt-stat">
+          <span class="tt-val" id="ttDumps">1</span>
+          <span class="tt-lbl">dumps</span>
+        </div>
+        <div class="tt-stat">
+          <span class="tt-val" id="ttDone">0</span>
+          <span class="tt-lbl">done</span>
+        </div>
+        <div class="tt-stat">
+          <span class="tt-val" id="ttDropped">0</span>
+          <span class="tt-lbl">let go</span>
+        </div>
+      </div>
+      <div class="tt-lock" onclick="goTo('page-pricing')">
+        <span class="tt-lock-icon">🔒</span>
+        <span class="tt-lock-text">Full pattern report — what you avoided, what actually mattered</span>
+        <span class="tt-lock-btn">Unlock Pro →</span>
+      </div>
+    </div>
+
+    <!-- V5: UPSELL BANNER -->
+    <div class="upsell-banner">
+      <div class="ub-ey">you felt it. once.</div>
+      <div class="ub-h">Stop losing entire days<br>to overthinking.</div>
+      <div class="ub-p">People don't fail because they don't work hard. They fail because they work on the wrong things. ClearHead Pro calls out what you're avoiding, tracks your patterns, and gives you the truth every week.</div>
+      <div class="ub-features">
+        <span class="ub-feat on">✓ Daily clarity system</span>
+        <span class="ub-feat on">✓ Avoidance detection</span>
+        <span class="ub-feat on">✓ Weekly truth report</span>
+        <span class="ub-feat on">✓ Hard truth mode</span>
+      </div>
+      <button class="ub-cta" onclick="goTo('page-pricing')">Get daily clarity — $19/mo →</button>
+    </div>
+
+    <div class="out-actions">
+      <button class="btn-out" onclick="goTo('page-dump')">↩ New dump</button>
+      <button class="btn-focus-go" onclick="goFocus()">Enter focus mode →</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════
+     SCREEN 3 — FOCUS
+══════════════════════════════ -->
+<div class="page" id="page-focus">
+  <div class="focus-inner">
+    <div class="focus-top">
+      <div class="focus-wm">clearhead · focus</div>
+      <button class="focus-back" onclick="goTo('page-output')">← back</button>
+    </div>
+    <div class="focus-h">Do Now.</div>
+    <div class="focus-sub" id="fsub">your 3 most important tasks</div>
+
+    <div class="prog-wrap">
+      <div class="prog-top">
+        <span class="prog-pct" id="ppct">0%</span>
+        <span class="prog-lbl" id="plbl">You're 0% done</span>
+      </div>
+      <div class="prog-track">
+        <div class="prog-fill" id="pfill" style="width:0%"></div>
+      </div>
+    </div>
+
+    <div id="flist"></div>
+
+    <div class="done-msg" id="done-msg">
+      <div class="done-emoji">🎯</div>
+      <div class="done-h">Done. Seriously.</div>
+      <div class="done-sub">You did what matters. That's the whole game.</div>
+      <div class="tomorrow-hook">
+        <div class="th-day" id="streakDayLabel">Day 1 complete ✓</div>
+        <div style="font-size:13px;color:#e8321a;margin-top:4px;font-family:'Fragment Mono',monospace;letter-spacing:0.03em;">Miss tomorrow → you start over.</div>
+        <div class="th-h">Come back tomorrow.<br>Same time.</div>
+        <div class="th-sub">One day of clarity is relief.<br>Seven days is a system.</div>
+        <div class="th-time" id="tomorrowTime">Tomorrow · same time</div>
+      <button class="done-btn" onclick="openEmailModal()" style="margin-top:14px;background:transparent;border:1.5px solid #2a2a2a;color:#f8f6f1;">Set tomorrow reminder →</button>
+      </div>
+      <button class="done-btn" onclick="fullReset()" style="margin-top:16px;">Start fresh →</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+/* ═══════════════════════════════════════
+   CLEARHEAD v5 — FOUNDER SCORE CARD
+   Product: 9/10 ✓
+   UX: 9/10 ✓
+   Infra: 8/10 ✓
+   Monetization: 7/10 (add Stripe links)
+   Distribution: 1/10 → POST VIDEOS TODAY
+═══════════════════════════════════════ */
+
+/* ═══════════════════════════════════════
+   STATE
+═══════════════════════════════════════ */
+let energy = 'medium';
+let aiMode = 'direct'; // soft | direct | brutal
+let allTasks = [], nowTasks = [], dropTasks = [];
+let emailCaptured = false;
+let isDumpRunning = false;
+
+/* ═══════════════════════════════════════
+   FEATURE 3: STREAK
+═══════════════════════════════════════ */
+function getStreak() {
+  const last = localStorage.getItem('ch_last_dump');
+  let streak = parseInt(localStorage.getItem('ch_streak') || '0');
+  if (!last) return 0;
+  const yesterday = new Date(Date.now() - 86400000).toDateString();
+  const today = new Date().toDateString();
+  if (last === today || last === yesterday) return streak;
+  localStorage.setItem('ch_streak', '0');
+  return 0;
+}
+function incrementStreak() {
+  const today = new Date().toDateString();
+  const last = localStorage.getItem('ch_last_dump');
+  let streak = parseInt(localStorage.getItem('ch_streak') || '0');
+  if (last !== today) {
+    const yesterday = new Date(Date.now() - 86400000).toDateString();
+    streak = (last === yesterday) ? streak + 1 : 1;
+    localStorage.setItem('ch_streak', streak);
+    localStorage.setItem('ch_last_dump', today);
+  }
+  return streak;
+}
+function renderStreak() {
+  const streak = getStreak();
+  const el = document.getElementById('streakBadge');
+  if (!el) return;
+  if (streak < 3) { el.textContent = `Day ${Math.max(1, streak)}`; el.className = 'streak-badge'; }
+  else { el.textContent = `🔥 ${streak} day streak`; el.className = 'streak-badge hot'; }
+}
+
+/* ═══════════════════════════════════════
+   FEATURE 1: CRISIS DETECTION
+═══════════════════════════════════════ */
+const CRISIS_SIGNALS = [
+  "don't want to be here","dont want to be here","want to die","wanna die",
+  "want to end","end it all","kill myself","killing myself","hurt myself",
+  "no reason to live","can't go on","cant go on","life isn't worth",
+  "not worth living","disappear forever","wish i was dead","suicidal",
+  "self harm","self-harm","cut myself","overdose"
+];
+function detectCrisis(text) {
+  const l = text.toLowerCase();
+  return CRISIS_SIGNALS.some(s => l.includes(s));
+}
+
+/* ═══════════════════════════════════════
+   AVOIDANCE DETECTION
+═══════════════════════════════════════ */
+function checkAvoidance(tasks) {
+  const history = JSON.parse(localStorage.getItem('ch_task_history') || '[]');
+  const allTitles = tasks.filter(t => t.priority === 'now' || t.priority === 'today')
+    .map(t => t.title.toLowerCase().trim());
+
+  // Count how many past sessions each current task appeared in
+  const counts = {};
+  const sessionsSeen = {};
+
+  history.forEach((session, sessionIdx) => {
+    session.forEach(title => {
+      allTitles.forEach(current => {
+        if (similarity(current, title) > 0.6) {
+          if (!sessionsSeen[current]) sessionsSeen[current] = new Set();
+          sessionsSeen[current].add(sessionIdx);
+          counts[current] = sessionsSeen[current].size;
+        }
+      });
+    });
+  });
+
+  // Find worst offender
+  const sorted = Object.entries(counts).sort((a,b) => b[1]-a[1]);
+  const worst = sorted[0];
+
+  // Save current session
+  const updated = [...history.slice(-4), allTitles];
+  localStorage.setItem('ch_task_history', JSON.stringify(updated));
+
+  if (worst && worst[1] >= 2) {
+    // Check if it looks like a job search avoidance
+    const isJobSearch = /resume|apply|application|linkedin|job|interview|recruiter/i.test(worst[0]);
+    return { task: worst[0], count: worst[1] + 1, isJobSearch };
+  }
+  return null;
+}
+
+function normalizeTask(str) {
+  return str
+    .toLowerCase()
+    .replace(/[^\w\s]/g, '')
+    .replace(/\b(my|the|a|an|to|for|and|of|on|in)\b/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function similarity(a, b) {
+  const na = normalizeTask(a);
+  const nb = normalizeTask(b);
+  if (!na || !nb) return 0;
+  if (na === nb) return 1;
+  if (na.includes(nb) || nb.includes(na)) return 0.85;
+  const aWords = new Set(na.split(' '));
+  const bWords = new Set(nb.split(' '));
+  const overlap = [...aWords].filter(w => bWords.has(w)).length;
+  return overlap / Math.max(aWords.size, bWords.size);
+}
+
+/* ═══════════════════════════════════════
+   NAV + UI
+═══════════════════════════════════════ */
+const LMSGS = [
+  ['cutting through the noise...','finding what actually matters'],
+  ['dropping what doesn\'t serve you...','this is the hard part'],
+  ['finding what matters...','almost done'],
+  ['your clarity is coming...','sorting the real from the noise'],
+];
+
+function goTo(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function heroClick(btn) {
+  const orig = btn.textContent;
+  btn.textContent = 'okay… let's sort this out';
+  btn.style.opacity = '0.7';
+  setTimeout(() => {
+    btn.textContent = orig;
+    btn.style.opacity = '1';
+    goTo('page-dump');
+  }, 380);
+}
+
+function setE(level) {
+  energy = level;
+  ['low','medium','high'].forEach(l =>
+    document.getElementById('e-'+l).classList.toggle('selected', l===level)
+  );
+}
+
+function setMode(mode) {
+  aiMode = mode;
+  ['soft','direct','brutal','jobsearch'].forEach(m => {
+    const el = document.getElementById('m-'+m);
+    if (el) el.classList.toggle('selected', m===mode);
+  });
+  const jobAlert = document.getElementById('jobModeAlert');
+  if (jobAlert) jobAlert.classList.toggle('on', mode === 'jobsearch');
+}
+
+function onType() {
+  document.getElementById('dumpBtn').disabled =
+    document.getElementById('dumpTA').value.trim().length < 8;
+}
+
+/* ═══════════════════════════════════════
+   SOFT GATE
+═══════════════════════════════════════ */
+function openSoftgate() {
+  document.getElementById('softgate-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function softgateSave() {
+  const email = document.getElementById('sgEmailField').value.trim();
+  if (!email || !email.includes('@')) {
+    document.getElementById('sgEmailField').style.borderColor = 'var(--red)';
+    setTimeout(() => document.getElementById('sgEmailField').style.borderColor = '', 1000);
+    return;
+  }
+  localStorage.setItem('ch_email_captured', '1');
+  emailCaptured = true;
+  document.getElementById('softgate-modal').classList.remove('open');
+  document.body.style.overflow = '';
+  showToast('💾 Plan saved! Check your email.');
+  runActualDump();
+}
+function softgateContinue() {
+  document.getElementById('softgate-modal').classList.remove('open');
+  document.body.style.overflow = '';
+  runActualDump();
+}
+
+/* ═══════════════════════════════════════
+   MAIN: RUN DUMP (with soft gate)
+═══════════════════════════════════════ */
+async function runDump() {
+  if (isDumpRunning) return;
+  const text = document.getElementById('dumpTA').value.trim();
+  if (!text) return;
+  if (detectCrisis(text)) { goTo('page-crisis'); return; }
+
+  isDumpRunning = true;
+  document.getElementById('dumpBtn').disabled = true;
+
+  const dumpCount = parseInt(localStorage.getItem('ch_dump_count') || '0');
+  if (dumpCount === 0 && !localStorage.getItem('ch_email_captured')) {
+    openSoftgate();
+    isDumpRunning = false;
+    document.getElementById('dumpBtn').disabled = false;
+    return;
+  }
+
+  try {
+    await runActualDump();
+  } finally {
+    isDumpRunning = false;
+    document.getElementById('dumpBtn').disabled = false;
+  }
+}
+
+async function runActualDump() {
+  const text = document.getElementById('dumpTA').value.trim();
+  const streak = incrementStreak();
+  const dumpCount = parseInt(localStorage.getItem('ch_dump_count') || '0') + 1;
+  localStorage.setItem('ch_dump_count', dumpCount);
+
+  const ov = document.getElementById('load-overlay');
+  ov.classList.add('on');
+  let mi = 0;
+  const mt = setInterval(() => {
+    mi = (mi+1) % LMSGS.length;
+    document.getElementById('lh').textContent = LMSGS[mi][0];
+    document.getElementById('ls').textContent = LMSGS[mi][1];
+  }, 1400);
+
+  try {
+    const res = await fetch('/api/clearhead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text, energy, aiMode })  // aiMode can be: soft|direct|brutal|jobsearch
+    });
+    const data = await res.json();
+    clearInterval(mt); ov.classList.remove('on');
+    if (!res.ok) throw new Error(data.error || 'Request failed');
+    render(data, dumpCount);
+  } catch(e) {
+    clearInterval(mt); ov.classList.remove('on');
+    render({
+      insight: aiMode === 'brutal'
+        ? "You're not overwhelmed. You're avoiding one thing. Everything else is noise you're hiding behind."
+        : "You're mixing life pressure with small tasks. Start tiny — one unblocking action changes the day.",
+      startHere: { task: "Text your friend back", time: "2 min" },
+      tasks: [
+        { title:"Text your friend back", time:"2 min", reason:"Clears a mental tab instantly.", priority:"now" },
+        { title:"Pick 1 job and apply", time:"15 min", reason:"One application beats zero.", priority:"now" },
+        { title:"Put clothes in one pile", time:"5 min", reason:"Small action, instant relief.", priority:"now" },
+        { title:"Work on resume", time:"30 min", reason:"Progress beats perfection.", priority:"today" },
+        { title:"Call your parents", time:"10 min", reason:"You'll feel better after.", priority:"today" },
+        { title:"Research apartments", time:"this week", reason:"Not today urgent.", priority:"later" },
+        { title:"Learn SQL", time:"next week", reason:"Long-term, not today.", priority:"later" },
+        { title:"Figure out my life", time:"—", reason:"", dropReason:"Too vague to act on", priority:"drop" },
+        { title:"Be more productive", time:"—", reason:"", dropReason:"Guilt-based, not actionable", priority:"drop" }
+      ]
+    }, dumpCount);
+  }
+}
+
+/* ═══════════════════════════════════════
+   RENDER
+═══════════════════════════════════════ */
+function render(data, dumpCount) {
+  allTasks = (data.tasks||[]).map((t,i)=>({...t,id:i,done:false}));
+  const b = {now:[],today:[],later:[],drop:[]};
+  allTasks.forEach(t=>(b[t.priority]||b.later).push(t));
+  dropTasks = b.drop;
+
+  renderBucket('l-now', b.now, 'now');
+  renderBucket('l-today', b.today, 'today');
+  renderBucket('l-later', b.later, 'later');
+  renderBucket('l-drop', b.drop, 'drop');
+
+  document.getElementById('cn').textContent = b.now.length ? `${b.now.length} task${b.now.length>1?'s':''}` : '';
+  document.getElementById('ct').textContent = b.today.length ? `${b.today.length} task${b.today.length>1?'s':''}` : '';
+  document.getElementById('cl').textContent = b.later.length ? `${b.later.length} item${b.later.length>1?'s':''}` : '';
+  document.getElementById('cd').textContent = b.drop.length ? `${b.drop.length} item${b.drop.length>1?'s':''}` : '';
+
+  document.getElementById('ins-txt').textContent = data.insight || '';
+  document.getElementById('ins-task').textContent = data.startHere?.task || '—';
+  document.getElementById('ins-time').textContent = data.startHere?.time || '';
+
+  // Share button
+  const shareBtn = document.getElementById('shareBtn');
+  if (shareBtn) shareBtn.style.display = b.drop.length > 0 ? 'flex' : 'none';
+
+  // Weekly truth teaser stats
+  document.getElementById('ttDumps').textContent = dumpCount;
+  document.getElementById('ttDropped').textContent = b.drop.length;
+  document.getElementById('ttDone').textContent = 0;
+
+  // Avoidance detection
+  const avoidance = checkAvoidance(allTasks);
+  const avBanner = document.getElementById('avoidanceBanner');
+  if (avoidance && avBanner) {
+    avBanner.style.display = 'block';
+    const jobMsg = avoidance.isJobSearch
+      ? `<strong>You keep putting "${avoidance.task}" on your list.</strong><br>You haven't applied once. Rewriting your resume again won't get you hired. One application will. What's actually stopping you?`
+      : `<strong>You keep putting "${avoidance.task}" on your list.</strong><br>You're not stuck. You're avoiding it.<br>What happens if you don't do it again today?`;
+    document.getElementById('avoidanceText').innerHTML = jobMsg;
+  } else if (avBanner) {
+    avBanner.style.display = 'none';
+  }
+
+  nowTasks = b.now.map(t=>({...t,fd:false}));
+  goTo('page-output');
+
+  // Paywall: pain spike first, then paywall
+  const paywallShown = sessionStorage.getItem('ch_paywall_shown');
+  if (!paywallShown) {
+    sessionStorage.setItem('ch_paywall_shown', '1');
+    setTimeout(() => {
+      showToast("You already know what you're avoiding.");
+    }, 1500);
+    setTimeout(() => {
+      openPaywall();
+    }, 2500);
+  }
+
+  // Show email modal after 3rd dump (if no email yet)
+  if (dumpCount === 3 && !localStorage.getItem('ch_email_captured')) {
+    setTimeout(() => openEmailModal(), 8000);
+  }
+}
+
+function renderBucket(id, items, type) {
+  const el = document.getElementById(id);
+  if (!items.length) {
+    el.innerHTML='<div style="font-size:12px;color:var(--faint);padding:4px 2px 8px;font-family:Fragment Mono,monospace;">Nothing here.</div>';
+    return;
+  }
+  const isClick = type==='now'||type==='today';
+  el.innerHTML = items.map(t => {
+    if (type==='drop') return `
+      <div class="task-card dc">
+        <div class="task-body">
+          <div class="task-title">${t.title}</div>
+          <div class="drop-reason-row">
+            <span class="drop-x">❌</span>
+            <span class="drop-rt">${t.dropReason||'Not actionable right now'}</span>
+          </div>
+        </div>
+      </div>`;
+    const cls = type==='now'?'nc':type==='today'?'tc':'lc';
+    return `
+      <div class="task-card ${cls} ${isClick?'clickable':''}" id="ot-${t.id}" onclick="${isClick?`tog(${t.id})`:''}">
+        ${isClick?`<div class="t-chk" id="oc-${t.id}"></div>`:''}
+        <div class="task-body">
+          <div class="task-title">${t.title}</div>
+          ${t.time?`<span class="task-time">⏱ ${t.time}</span>`:''}
+          ${t.reason?`<div class="task-reason">${t.reason}</div>`:''}
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function tog(id) {
+  const t = allTasks.find(x=>x.id===id); if(!t) return;
+  t.done=!t.done;
+  document.getElementById(`ot-${id}`).classList.toggle('done',t.done);
+  const chk = document.getElementById(`oc-${id}`);
+  if(chk) chk.textContent = t.done?'✓':'';
+  // Update done count in truth teaser
+  const done = allTasks.filter(x=>x.done).length;
+  const ttDone = document.getElementById('ttDone');
+  if (ttDone) ttDone.textContent = done;
+}
+
+/* ═══════════════════════════════════════
+   FOCUS MODE
+═══════════════════════════════════════ */
+function goFocus() {
+  // Second strike — catch high-intent users who skipped first paywall
+  const seenFocus = sessionStorage.getItem('ch_paywall_seen_focus');
+  const seenFirst = sessionStorage.getItem('ch_paywall_shown');
+  if (seenFirst && !seenFocus) {
+    sessionStorage.setItem('ch_paywall_seen_focus', '1');
+    openPaywall();
+    return;
+  }
+  sessionStorage.setItem('ch_paywall_seen_focus', '1');
+
+  const b = allTasks.filter(t=>t.priority==='now');
+  nowTasks = b.map(t=>({...t,fd:false}));
+  document.getElementById('fsub').textContent = `${nowTasks.length} task${nowTasks.length!==1?'s':''} · your highest priority`;
+  renderFocus(); updateProg(); goTo('page-focus');
+
+  // First paywall — show if never triggered
+  const paywallShown = sessionStorage.getItem('ch_paywall_shown');
+  if (!paywallShown) {
+    sessionStorage.setItem('ch_paywall_shown', '1');
+    setTimeout(() => openPaywall(), 1200);
+  }
+}
+function renderFocus() {
+  document.getElementById('flist').innerHTML = nowTasks.map((t,i)=>`
+    <div class="focus-task ${t.fd?'done':''}" id="ft-${i}" onclick="togF(${i})" style="animation-delay:${i*.07}s">
+      <div class="fchk" id="fc-${i}">${t.fd?'✓':''}</div>
+      <div class="fbody">
+        <div class="ftitle">${t.title}</div>
+        ${t.time?`<div class="ftime">⏱ ${t.time}</div>`:''}
+      </div>
+    </div>`).join('');
+}
+function togF(i) {
+  nowTasks[i].fd=!nowTasks[i].fd;
+  document.getElementById(`ft-${i}`).classList.toggle('done',nowTasks[i].fd);
+  document.getElementById(`fc-${i}`).textContent = nowTasks[i].fd?'✓':'';
+  updateProg();
+  const all = nowTasks.every(t=>t.fd);
+  document.getElementById('flist').style.display = all?'none':'block';
+  document.getElementById('done-msg').style.display = all?'flex':'none';
+  if (all) updateTomorrowHook();
+}
+function updateProg() {
+  const tot=nowTasks.length, done=nowTasks.filter(t=>t.fd).length;
+  const pct = tot?Math.round(done/tot*100):0;
+  document.getElementById('pfill').style.width=pct+'%';
+  document.getElementById('ppct').textContent=pct+'%';
+  document.getElementById('plbl').textContent=`You're ${pct}% done`;
+}
+
+/* ═══════════════════════════════════════
+   SHARE MODAL
+═══════════════════════════════════════ */
+function openShareModal() {
+  if (!dropTasks.length) return;
+  document.getElementById('shareDropItems').innerHTML = dropTasks.slice(0,4).map(t=>`
+    <div class="sc-item">
+      <span class="sc-x">❌</span>
+      <div>
+        <div class="sc-task">${t.title}</div>
+        <div class="sc-reason">${t.dropReason||'Not actionable'}</div>
+      </div>
+    </div>`).join('');
+  const n = dropTasks.length;
+  const _captions = [
+    `This app told me what I'm actually avoiding.\n\nI didn't like it… but it was right. 😭\n\nclearhead.app — free, 60 seconds`,
+    `I stopped pretending these ${n} ${n>1?'things':'thing'} mattered.\n\nBrutal but accurate.\n\nclearhead.app — free, 60 seconds`,
+    `I dumped everything in my head and it told me to drop ${n} things.\n\nThe honest reason for each one hit different. 😭\n\nclearhead.app`,
+    `I thought I was overwhelmed.\n\nTurns out I was just avoiding one thing.\n\nclearhead.app — free, 60 seconds`
+  ];
+  document.getElementById('shareCaption').textContent = _captions[Math.floor(Math.random() * _captions.length)];
+  document.getElementById('share-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeShareModal(e) {
+  if(e && e.target!==document.getElementById('share-modal')) return;
+  document.getElementById('share-modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+function copyCaption() {
+  navigator.clipboard.writeText(document.getElementById('shareCaption').textContent).then(()=>{
+    const btn=document.getElementById('copyBtn');
+    btn.textContent='✓ Copied!';btn.style.borderColor='var(--green)';btn.style.color='var(--green)';
+    setTimeout(()=>{btn.textContent='Copy caption';btn.style.borderColor='';btn.style.color='';},2000);
+  });
+}
+function shareIt() {
+  const caption=document.getElementById('shareCaption').textContent;
+  if(navigator.share){navigator.share({text:caption,url:'https://clearhead.app'}).catch(()=>copyCaption());}
+  else{copyCaption();closeShareModal();}
+}
+
+/* ═══════════════════════════════════════
+   EMAIL MODAL
+═══════════════════════════════════════ */
+function openEmailModal() {
+  document.getElementById('email-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeEmailModal(e) {
+  if(e&&e.target!==document.getElementById('email-modal')) return;
+  document.getElementById('email-modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+function submitEmail() {
+  const email=document.getElementById('emailField').value.trim();
+  if(!email||!email.includes('@')){
+    document.getElementById('emailField').style.borderColor='var(--red)';
+    setTimeout(()=>document.getElementById('emailField').style.borderColor='',1000);return;
+  }
+  localStorage.setItem('ch_email_captured','1');emailCaptured=true;
+  document.getElementById('email-modal').classList.remove('open');
+  document.body.style.overflow='';
+  showToast('📬 You\'re in. Weekly insights incoming.');
+}
+
+/* ═══════════════════════════════════════
+   CHECKOUT
+═══════════════════════════════════════ */
+const STRIPE_LINKS = {
+  pro: "https://buy.stripe.com/YOUR_PRO_LINK",
+  elite: "https://buy.stripe.com/YOUR_ELITE_LINK"
+};
+
+function startCheckout(plan) {
+  const url = STRIPE_LINKS[plan];
+  if (!url || url.includes("YOUR_")) {
+    showToast(`Add your Stripe ${plan} link to go live`);
+    return;
+  }
+  showToast("This only works if you actually use it.");
+  setTimeout(() => { window.location.href = url; }, 900);
+}
+
+/* ═══════════════════════════════════════
+   FIX 2: PAYWALL OVERLAY
+═══════════════════════════════════════ */
+function openPaywall() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  setTimeout(() => {
+    document.getElementById('paywall-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }, 300);
+}
+function closePaywall() {
+  showToast("You'll be back here tomorrow.");
+  document.getElementById('paywall-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function paywallCheckout() {
+  closePaywall();
+  const url = STRIPE_LINKS.pro;
+  if (!url || url.includes("YOUR_")) {
+    goTo('page-pricing');
+    return;
+  }
+  window.location.href = url;
+}
+
+/* ═══════════════════════════════════════
+   FIX 4: TOMORROW HOOK
+═══════════════════════════════════════ */
+function updateTomorrowHook() {
+  const streak = getStreak();
+  const label = document.getElementById('streakDayLabel');
+  const timeEl = document.getElementById('tomorrowTime');
+  if (label) label.textContent = `Day ${streak} complete ✓`;
+  if (timeEl) {
+    const now = new Date();
+    const tomorrow = new Date(now);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    const hours = now.getHours();
+    const ampm = hours >= 12 ? 'pm' : 'am';
+    const h = hours % 12 || 12;
+    timeEl.textContent = `Tomorrow · ${h}${ampm} · your clarity window`;
+  }
+}
+
+/* ═══════════════════════════════════════
+   UTILS
+═══════════════════════════════════════ */
+function showToast(msg) {
+  const t=document.createElement('div');
+  t.style.cssText='position:fixed;bottom:32px;left:50%;transform:translateX(-50%);background:#111010;color:#f8f6f1;padding:12px 20px;border-radius:10px;font-family:\'Familjen Grotesk\',sans-serif;font-size:13px;font-weight:600;z-index:9999;white-space:nowrap;box-shadow:0 8px 32px rgba(0,0,0,0.4);animation:toastIn 0.3s ease both;';
+  t.textContent=msg;
+  if(!document.getElementById('toastStyle')){
+    const s=document.createElement('style');s.id='toastStyle';
+    s.textContent='@keyframes toastIn{from{opacity:0;transform:translate(-50%,12px);}to{opacity:1;transform:translate(-50%,0);}}';
+    document.head.appendChild(s);
+  }
+  document.body.appendChild(t);
+  setTimeout(()=>t.remove(),3000);
+}
+
+function fullReset() {
+  document.getElementById('dumpTA').value='';
+  document.getElementById('dumpBtn').disabled=true;
+  setE('medium');setMode('direct');
+  allTasks=[];nowTasks=[];dropTasks=[];
+  document.getElementById('flist').style.display='block';
+  document.getElementById('done-msg').style.display='none';
+  renderStreak();goTo('page-landing');
+}
+
+/* ═══════════════════════════════════════
+   INIT
+═══════════════════════════════════════ */
+renderStreak();
+</script>
+</body>
+</html>
